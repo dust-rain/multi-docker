@@ -4,21 +4,21 @@ services:
   - docker
 
 before_install:
-  - docker build -t dustrain/react-test -f ./client/Dockerfile.dev ./client
+  - docker build -t lizard4garden/react-test -f ./client/Dockerfile.dev ./client
 
 script:
-  - docker run -e CI=true dustrain/react-test npm run test
+  - docker run -e CI=true lizard4garden/react-test npm run test
 
 after_success:
-  - docker build -t dustrain/multi-client ./client
-  - docker build -t dustrain/multi-nginx ./nginx
-  - docker build -t dustrain/multi-server ./server
-  - docker build -t dustrain/multi-worker ./worker
+  - docker build -t lizard4garden/multi-client ./client
+  - docker build -t lizard4garden/multi-nginx ./nginx
+  - docker build -t lizard4garden/multi-server ./server
+  - docker build -t lizard4garden/multi-worker ./worker
   # Log in to the docker CLI
   - echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_ID" --password-stdin
   # Take those images and push them to docker hub
-  - docker push dustrain/multi-client
-  - docker push dustrain/multi-nginx
-  - docker push dustrain/multi-server
-  - docker push dustrain/multi-worker
+  - docker push lizard4garden/multi-client
+  - docker push lizard4garden/multi-nginx
+  - docker push lizard4garden/multi-server
+  - docker push lizard4garden/multi-worker
   
